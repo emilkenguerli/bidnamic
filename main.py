@@ -46,7 +46,7 @@ if __name__ == "__main__":
     my_event_handler.on_created = on_created
 
     path = "."
-    go_recursively = True
+    go_recursively = False
     my_observer = Observer()
     my_observer.schedule(my_event_handler, path, recursive=go_recursively)
 
