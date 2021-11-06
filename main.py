@@ -1,9 +1,39 @@
 import time
+import pandas as pd
+from pandas.errors import ParserError
 from watchdog.observers import Observer
 from watchdog.events import PatternMatchingEventHandler
 
 def on_created(event):
-    print(f"{event.src_path} has been created!")
+    try:
+        old_data= pd.read_csv(
+            event.src_path,
+            sep = '\t',
+            encoding='UTF-16 LE',
+            thousands=',',
+            dtype={"Search term": str, "clicks": int, "Ad group": str, "Conv. value": float},
+            error_bad_lines=False,
+            warn_bad_lines=True
+        )
+        new_data = old_data[['Search term', 'Clicks', 'Cost', 'Impr.', 'Conv. value']].copy()
+        new_data.rename(
+            {
+                'Search term': 'search_term', 
+                'Clicks': 'clicks', 
+                'Cost': 'cost', 
+                'Impr.': 'impressions', 
+                'Conv. value': 'conversion_value'
+            }
+            , axis=1, 
+            inplace=True
+        )
+        new_data['roas'] =  new_data['conversion_value'] / new_data['cost']
+        new_data.to_csv(
+            f"processed/{old_data.iloc[0]['Currency code']}/search_terms/{str(time.time())}.csv", 
+            index=False
+        )
+    except ParserError:
+        print("Your data contained rows that could not be parsed.")
 
 
 if __name__ == "__main__":
