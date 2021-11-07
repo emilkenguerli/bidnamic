@@ -35,14 +35,14 @@ def process_CSV(src_path):
     """
     try:
         # Reads the data from the added CSV into a dataframe
+        # If a bad line is encountered it will raise a warning and skip that line
         old_data= pd.read_csv(
             src_path,
             sep = '\t',
             encoding='UTF-16 LE',
             thousands=',',
             dtype={"Search term": str, "clicks": int, "Ad group": str, "Conv. value": float},
-            error_bad_lines=False,
-            warn_bad_lines=True)
+            on_bad_lines='warn')
 
         # Creates a new dataframe based on the old one
         new_data = old_data[['Search term', 'Clicks', 'Cost', 'Impr.', 'Conv. value']].copy()
@@ -90,6 +90,7 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         my_observer.stop()
 
+    # Ends the pool and observer threads
     my_observer.join()
     pool.close()
     pool.join()
