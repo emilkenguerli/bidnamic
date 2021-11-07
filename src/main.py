@@ -36,7 +36,7 @@ def createCSV(src_path):
         )
         new_data['roas'] =  new_data['conversion_value'] / new_data['cost']
         new_data.to_csv(
-            f"processed/{old_data.iloc[0]['Currency code']}/search_terms/{str(time.time())}.csv", 
+            f"../processed/{old_data.iloc[0]['Currency code']}/search_terms/{str(time.time())}.csv", 
             index=False
         )
     except ParserError:
@@ -52,7 +52,7 @@ if __name__ == "__main__":
 
     my_event_handler.on_created = on_created
 
-    path = "."
+    path = "../data"
     go_recursively = False
     my_observer = Observer()
     my_observer.schedule(my_event_handler, path, recursive=go_recursively)
