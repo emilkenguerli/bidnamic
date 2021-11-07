@@ -65,7 +65,9 @@ def process_CSV(src_path):
     except ParserError:
         print("Your data contained rows that could not be parsed.")
 
-if __name__ == "__main__":
+def main():
+    """Where the observer and multiprocessing pool are set up
+    """
     # Multiprocessing Pool settings
     pool = mp.Pool(processes=mp.cpu_count())
 
@@ -94,3 +96,6 @@ if __name__ == "__main__":
     my_observer.join()
     pool.close()
     pool.join()
+
+if __name__ == "__main__":
+    main()
