@@ -1,0 +1,9 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+src/bidnamic.egg-info/PKG-INFO
+src/bidnamic.egg-info/SOURCES.txt
+src/bidnamic.egg-info/dependency_links.txt
+src/bidnamic.egg-info/requires.txt
+src/bidnamic.egg-info/top_level.txt

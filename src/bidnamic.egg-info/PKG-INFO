@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: bidnamic
+Version: 0.0.1
+Summary: Small package to monitor and create csv files
+Home-page: https://github.com/emilkenguerli/bidnamic.git
+Author: EmilKenguerli
+Author-email: emil.kenguerli@gmail.com
+License: MIT
+Keywords: bidnamic
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# bidnamic
+
+## Usage
+
+Run main.py which will create a python daemon that monitors the data directory, when you place CSV files in this directory it will generate new CSV files in the processed\GBP\search_terms directory
+
